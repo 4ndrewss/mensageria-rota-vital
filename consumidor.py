@@ -1,4 +1,4 @@
-import json, os, boto3
+import json, os, time, boto3
 
 sqs = boto3.client(
     "sqs", endpoint_url="http://localhost:9324", region_name="us-east-1",
@@ -9,10 +9,11 @@ def processar(pedido):
     if "requisicaoId" not in pedido:
         raise ValueError("mensagem sem requisicaoId")
     print(os.getpid(), "guia G-" + pedido["requisicaoId"], pedido.get("hospital"))
+    time.sleep(0.5)
 
 while True:
     resp = sqs.receive_message(
-        QueueUrl=url, MaxNumberOfMessages=10, WaitTimeSeconds=10,
+        QueueUrl=url, MaxNumberOfMessages=1, WaitTimeSeconds=10,
         MessageSystemAttributeNames=["ApproximateReceiveCount"])
     for m in resp.get("Messages", []):
         try:
