@@ -1,6 +1,6 @@
-# 📬 Mensageria com fila SQS (ElasticMQ)
+# 📬 Atividade 2: Mensageria
 
-Atividade individual 2 · Infraestrutura de Software · ADS · CESAR School · 2026.2
+Infraestrutura de Software · ADS · CESAR School · 2026.2
 
 Uma fila compatível com o Amazon SQS, um produtor e dois consumidores, rodando no meu computador. Cada mensagem é um pedido de hospital do Rota Vital, e o consumidor gera a guia de transporte (só imprime na tela).
 
@@ -36,23 +36,23 @@ Pré-requisitos: Docker Desktop, AWS CLI v2, Python 3.12+ e `pip install boto3`.
 
 ## 📁 Arquivos
 
-- `docker-compose.yml`: sobe o ElasticMQ na porta 9324
-- `produtor.py`: envia 20 pedidos válidos e 1 sem `requisicaoId`
-- `consumidor.py`: recebe, processa e só então apaga a mensagem
-- `evidencias/`: prints dos comandos e das saídas
+- [`docker-compose.yml`](./docker-compose.yaml): sobe o ElasticMQ na porta 9324
+- [`produtor.py`](./produtor.py): envia 20 pedidos válidos e 1 sem `requisicaoId`
+- [`consumidor.py`](./consumidor.py): recebe, processa e só então apaga a mensagem
+- [`evidencias/`](./evidencias/): prints dos comandos e das saídas
 
 ## 🔧 Mudanças no código do PDF
 
-No `consumidor.py` troquei `MaxNumberOfMessages=10` por `1` e adicionei `time.sleep(0.5)` em `processar`. Sem isso, um consumidor pega quase todas as mensagens de uma vez e o outro fica sem nada, e a divisão do trabalho não aparece.
+No [`consumidor.py`](./consumidor.py) troquei `MaxNumberOfMessages=10` por `1` e adicionei `time.sleep(0.5)` em `processar`. Sem isso, um consumidor pega quase todas as mensagens de uma vez e o outro fica sem nada, e a divisão do trabalho não aparece.
 
 ## 📸 Evidências
 
 | Arquivo | O que mostra |
 |---|---|
-| `01-fila-criada.png` | Fila `guias` criada com a `QueueUrl` |
-| `02-produtor-enviou-21.png` | Produtor enviando as 21 mensagens |
-| `03-consumidor-guias-e-invalida.png` | Um consumidor gerando as 20 guias e a inválida voltando, com `ApproximateReceiveCount` subindo |
-| `04-dois-consumidores.png` | Dois consumidores (PIDs 21076 e 20588) dividindo as mensagens |
+| [`01-fila-criada.png`](./evidencias/01-fila-criada.png) | Fila `guias` criada com a `QueueUrl` |
+| [`02-produtor-enviou-21.png`](./evidencias/02-produtor-enviou-21.png) | Produtor enviando as 21 mensagens |
+| [`03-consumidor-guias-e-invalida.png`](./evidencias/03-consumidor-guias-e-invalida.png) | Um consumidor gerando as 20 guias e a inválida voltando, com `ApproximateReceiveCount` subindo |
+| [`04-dois-consumidores.png`](./evidencias/04-dois-consumidores.png) | Dois consumidores (PIDs 21076 e 20588) dividindo as mensagens |
 
 ## ❓ Perguntas
 
@@ -100,4 +100,4 @@ No modo **assíncrono**, o hospital só coloca o pedido na fila e **segue com o 
 
 - **Ferramenta:** Claude (Anthropic).
 - **Finalidade:** apoio para entender o enunciado, resolver erros de instalação e de comandos no Windows (AWS CLI e PowerShell), organizar a estrutura do repositório, das evidências e do README, e revisar o texto das respostas.
-- **Como validei:** executei todos os comandos e o código na minha máquina e conferi as saídas com os prints em `evidencias/`. As observações da pergunta 2 (PIDs e divisão das guias) vêm da minha própria execução. Conferi o comportamento de ordem das filas padrão e do visibility timeout na documentação do SQS indicada no enunciado. Sei explicar o código e o que cada parte faz.
+- **Como validei:** executei todos os comandos e o código na minha máquina e conferi as saídas com os prints em [`evidencias/`](./evidencias/). As observações da pergunta 2 (PIDs e divisão das guias) vêm da minha própria execução. Conferi o comportamento de ordem das filas padrão e do visibility timeout na documentação do SQS indicada no enunciado. Sei explicar o código e o que cada parte faz.
