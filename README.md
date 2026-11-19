@@ -4,9 +4,9 @@ Infraestrutura de Software · ADS · CESAR School · 2026.2
 
 Uma fila compatível com o Amazon SQS, um produtor e dois consumidores, rodando no meu computador. Cada mensagem é um pedido de hospital do Rota Vital, e o consumidor gera a guia de transporte (só imprime na tela).
 
-<!-- ## 🎥 Vídeo -->
+## 🎥 Vídeo 
 
-<!-- [Assistir no YouTube](COLE_O_LINK_AQUI) -->
+Assista ao meu Screencast (1min 56s): [Vídeo no YouTube](https://youtu.be/0hl1ERFxE3o?is=-AiLeQd5paajHUUx)
 
 ## 🛤️ Caminho escolhido
 
